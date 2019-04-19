@@ -151,6 +151,26 @@
   <ItemGroup>
     <Text Include="Readme.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\Bomb.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ListofMissile.h" />
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\ListofAlien.h" />
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\ListofBomb.h" />
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\startButton.h" />
+    <ClInclude Include="Missile.h" />
+    <ClInclude Include="Alien.h" />
+    <ClInclude Include="ship.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\alien.png" />
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\brain_alien.png" />
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\fire.png" />
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\missile.png" />
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\player_play.png" />
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\ship.png" />
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\stars.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

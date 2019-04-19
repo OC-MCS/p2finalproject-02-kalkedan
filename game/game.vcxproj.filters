@@ -24,4 +24,56 @@
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ship.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Alien.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\Bomb.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\startButton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\ListofAlien.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\ListofBomb.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListofMissile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\missile.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\stars.jpg">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\alien.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\brain_alien.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\fire.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\player_play.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\kal%27sDoc2019\Programing II\program7\game\ship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
