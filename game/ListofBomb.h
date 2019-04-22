@@ -7,7 +7,7 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 #include"Bomb.h"
 using namespace sf;
-class ListofBomb
+class ListofBomb  
 {
 private:
 	list<Bomb> bombs;

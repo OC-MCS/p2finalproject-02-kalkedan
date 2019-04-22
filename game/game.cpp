@@ -111,7 +111,7 @@ int main()
 		// will appear on top of background
 		window.draw(background);
 
-		moveShip(ship);
+		moveShip(ship);  
 
 		// draw the ship on top of background 
 		// (the ship from previous frame was erased when we drew background)
