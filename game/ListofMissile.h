@@ -17,11 +17,11 @@ public:
 			cout << "Unable to load ship texture!" << endl;
 			exit(EXIT_FAILURE);
 		}
-		
+
 	}
 
 
-	void drawList( RenderWindow& win)
+	void drawList(RenderWindow& win)
 	{
 		if (!missileTexure.loadFromFile("missile.png"))
 		{
@@ -29,15 +29,21 @@ public:
 			exit(EXIT_FAILURE);
 		}
 		list<Missile>::iterator iter;
-		for(iter=missiles.begin();iter!=missiles.end();)
-		(*iter).draw(win);
+		for (iter = missiles.begin(); iter != missiles.end();)
+			(*iter).draw(win);
 	}
 	void addtoMissuleList(Missile missile)
 	{
 		list<Missile>::iterator iter;
 
-		
+
 		missiles.push_back(missile);
+	}
+	Missile getMissile()
+	{
+		list<Missile>::iterator iter;
+
+		return (*iter);
 	}
 	void updateMissuleList(Missile missile)
 	{
@@ -49,11 +55,26 @@ public:
 			{
 				(*iter).updateMissile(orginalPos);
 			}
-			
+
 		}
-	
+
 	}
+	void missileUpdateTexture(Missile missile)
+	{
+		list<Missile>::iterator iter;
+
+		for (iter = missiles.begin(); iter != missiles.end(); iter++)
+		{
 	
+			(*iter).getMissileSprite().setTexture(missileTexure);
+		}
+	}
+	Texture getMissileTexture()
+	{
+		return missileTexure;
+		
+		
+	}
 	void move()
 	{
 		

@@ -2,12 +2,13 @@
 #include <iostream>
 using namespace std;
 #include"ship.h";
+#include"Alien.h"
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
 class Missile
 {
-private:
+private:  
 	int ID;
 	Sprite missile;
 	Texture missleTeXture;
@@ -15,7 +16,7 @@ private:
 
 public:
 
-	Missile(Texture &tex, Vector2f pos,int id)
+	Missile(Texture &tex, Vector2f pos, int  id)
 	{
 		missile.setTexture(tex);
 		missile.setPosition(pos);
@@ -46,7 +47,7 @@ public:
 		missile.setPosition(pos);
 
 	}
-	// This function get the Id of the missile to update the missile's position
+//This function get the Id of the missile to update the missile's position
 
 	int getId()
 	{
