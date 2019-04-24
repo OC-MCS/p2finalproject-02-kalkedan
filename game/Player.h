@@ -11,15 +11,19 @@ private:
 	int level = 1;
 	
 public:
+	//This function increament the score;
+
 	void Scoreincreament()
 	{
 		score = score + 1;
 	}
+	//This function decrease the number of life
 	void lifedecresing()
 	{
 		if (lifeLost > 0)
 			lifeLost= lifeLost-1;
 	}
+	
 	int getLIfe()
 	{
 		return lifeLost;
@@ -37,6 +41,7 @@ public:
 	{
 		level=l;
 	}
+	//This function darws a text
 	void Textdraw(RenderWindow &win)
 	{
 		
@@ -44,8 +49,10 @@ public:
 		{
 			//	die ("couldn't load font");
 		}
+	
 		Text title1("Life Lost", lifeLostdis, 50);
 		title1.setPosition(5, 6);
+
 		win.draw(title1);
 		if (!Scoredis.loadFromFile("C:\\windows\\Fonts\\arial.ttf"))
 		{

@@ -19,6 +19,7 @@ private:
 	Vector2f position;
 
 public:
+	// This function loads a texture for ship;
 	void readfile()
 	{
 		if (!shipTexture.loadFromFile("ship.png"))
@@ -29,6 +30,7 @@ public:
 		ship.setTexture(shipTexture);
 
 	}
+	// This function sets a position  of the ship
 	void setPos(float x, float y)
 	{
 		
@@ -37,12 +39,15 @@ public:
 	Vector2f getShipPosition()
 	{
 		return position;
+
 	}
+	// This function darws ship
 	void draw(RenderWindow& window)
 	{
 
 		window.draw(ship);
 	}
+	//This function move the ship
 	void moveShip()
 	{
 		const float DISTANCE = 5.0;
@@ -60,6 +65,7 @@ public:
 				ship.move(DISTANCE, 0);
 		}
 	}
+	//This function returns the ships sprite
 	Sprite getShipsSprite()
 	{
 		return ship;

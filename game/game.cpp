@@ -171,21 +171,24 @@ void restart()
 			window.draw(background);
 
 
-			if (count % 180 == 0)
+			if (count % 180 == 0 && anAliens.isNullaliens()==false)
 			{
 				alien = anAliens.getRandomAlien();
 				Bomb temp(bombTexture, alien.getAliensSprite().getPosition());
 				bomb = temp;
-				listBomb.addtoBombList(temp);
+				listBomb.addtoBombList(bomb);
+				
 
 			}
+			speedofBomb = 10;
+
+			bomb.moveBomb(speedofBomb);
+
 			ship.moveShip();
 			anAliens.move();
 			missile.moveMissile();
 			aMissiles.updateMissuleList(missile);
 			anAliens.removeAliens(aMissiles);
-			speedofBomb = 10;
-			bomb.moveBomb(speedofBomb);
 			
 
 			if (anAliens.isNullaliens() == true)
@@ -193,13 +196,18 @@ void restart()
 				player.setLevel(2);
 				speedofAlien = 1;
 				speedofBomb = 20;
+				restart();
 
+			}
+			if (missile.isgetHit(alien) == true)
+			{
+				player.Scoreincreament();
+				window.close();
+				restart();
 			}
 
 			if (anAliens.getAlien().getAliensSprite().getPosition().y == 1300)
 			{
-
-
 				window.close();
 				restart();
 
@@ -370,6 +378,7 @@ int main()
 			
 			if (count % 180 == 0)
 			{
+				if(anAliens.isNullaliens()==false)
 				alien = anAliens.getRandomAlien();
 				Bomb temp(bombTexture, alien.getAliensSprite().getPosition());
 				bomb = temp;
@@ -383,36 +392,48 @@ int main()
 			anAliens.removeAliens(aMissiles);
 			speedofBomb = 10;
 			bomb.moveBomb(speedofBomb);
+			if (bomb.isgetHit(ship) == true)
+			{
+				life--;
+				player.setLisfe(life);
+
+			}
 			
 			if (anAliens.isNullaliens() == true)
 			{
 				player.setLevel(2);
 				speedofAlien = 1;
 				speedofBomb = 20;
+				window.close();
+				restart();
 
 			}
 			
 			if ( anAliens.getAlien().getAliensSprite().getPosition().y ==1300)
 			{
-				
-				
 				window.close();
 				restart();
-				
-	
 			}
-			if (bomb.isgetHit(ship)==true)
-			{
-				life--;
-				player.setLisfe(life);
-				
-			}
-			if (player.getLIfe()==0)
-			{
-				//window.close();
 			
-				
+			if (player.getLIfe() == 0)
+			{
+				Font game;
+				if (!game.loadFromFile("C:\\windows\\Fonts\\arial.ttf"))
+				{
+					//	die ("couldn't load font");
+				}
+
+				sf::Text gameover;
+				gameover.setFont(game);
+				gameover.setString("Gameover");
+				gameover.setOutlineThickness(4);
+				gameover.setCharacterSize(250);
+				window.draw(gameover);
+
+				window.close();
+				restart();
 			}
+			
 			
 			
 				ship.draw(window);

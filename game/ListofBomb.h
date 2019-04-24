@@ -22,29 +22,14 @@ public:
 		}
 
 	}
-
-	void drawList(RenderWindow& win)
-	{
-
-		list<Bomb>::iterator iter;
-		(*iter).draw(win);
-	}
+	
+	//This function adds the bombs to the list
 	void addtoBombList( Bomb bomb)
 	{	
 		
 		bombs.push_back(bomb);
 
 	}
-	void move(int speed)
-	{
-		
-		list<Bomb>::iterator iter;
-
-		for (iter = bombs.begin(); iter != bombs.end(); iter++)
-		{
-			(*iter).moveBomb(speed);
-
-		}
-	}
+	
 
 };

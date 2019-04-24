@@ -16,20 +16,20 @@ private:
 public:
 	
 
-	
-	Bomb(Texture &tex, Vector2f pos)
+Bomb(Texture &tex, Vector2f pos)
 
 	{
 		bomb.setTexture(tex);		
 		bomb.setPosition(pos);
 
 	}
-	
+	// This function draw the bomb
 	void draw(RenderWindow& window)
 	{
 
 		window.draw(bomb);
 	}
+	// This function moves the bomb
 	void moveBomb(int speed)
 	{
 		if (bomb.getPosition().y < 1600)
@@ -41,7 +41,9 @@ public:
 	{
 		return bomb;
 	}
-	
+	// This function checks if the bomb hits the missile;
+	//paramter: ship we pass the ship as paramter to check the global bound
+	//return bool
 	bool isgetHit(Ship ship)
 	{
 		FloatRect shipBounds = ship.getShipsSprite().getGlobalBounds();

@@ -79,10 +79,10 @@ public:
 		int index = getRandom();
 		index = index - 1;
 
-		if (index >= 0 && index < aliens.size())
+		if (index >= 0 && index <aliens.size())
 		{
 			list<Alien>::iterator it;
-			if (aliens.begin() != aliens.end())
+			if (aliens.begin() != aliens.end()&& aliens.size()!=0)
 			{
 				it = aliens.begin();
 				advance(it, index);
@@ -93,12 +93,17 @@ public:
 		else
 		{
 			list<Alien>::iterator it;
-			it = aliens.begin();
-			//advance(it, 1);
-			return *it;
+			if (aliens.size() != 0)
+			{
 
+				it = aliens.begin();
+				//advance(it, 1);
+				return *it;
+			}
 		}
 	}
+	//This function checks if allof the aliens got hit
+	// return bool
 	bool isNullaliens()
 	{
 		if (aliens.size() == 0)
@@ -139,14 +144,19 @@ public:
 				}
 		
 	}
-	
+	// This function return a single alien from the list to get aliens position
+	//return an alien
 	Alien getAlien()
 	{
 		list<Alien>::iterator iter;
-		if (aliens.begin() != aliens.end())
-			iter = aliens.begin();
-
-			return *iter;
+		Alien alien;
+		if (aliens.size()!=0)
+			for (iter = aliens.begin(); iter!= aliens.end(); iter++)
+			{
+				alien= *iter;
+			}
+			
+		return alien;
 	}
 
 
