@@ -13,10 +13,12 @@ using namespace std;
 #include "bomb.h"
 #include "ListofBomb.h"
 #include"startButton.h"
+#include"Player.h"
+#include<ctime>
 using namespace sf; 
 
 //============================================================
-// YOUR HEADER WITH YOUR NAME GOES HERE. PLEASE DO NOT FORGET THIS
+// Kalkedan Ararso
 //============================================================
 
 // note: a Sprite represents an image on screen. A sprite knows and remembers its own position
@@ -43,25 +45,18 @@ void moveShip(Sprite& ship)
 	
 }
 
-
-
 int main()
 {
 	const int WINDOW_WIDTH = 850;
 	const int WINDOW_HEIGHT = 1600;
-
+	srand(0);
 	RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "aliens!");
 	// Limit the framerate to 60 frames per second
 	window.setFramerateLimit(80);
 
 	// load textures from file into memory. This doesn't display anything yet.
 	// Notice we do this *before* going into animation loop.
-	Texture shipTexture;
-	if (!shipTexture.loadFromFile("ship.png"))
-	{
-		cout << "Unable to load ship texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
+	
 	Texture starsTexture;
 	if (!starsTexture.loadFromFile("stars.jpg"))
 	{
@@ -94,12 +89,13 @@ int main()
 
 
 	// create sprite and texture it
-	Sprite ship;
-	ship.setTexture(shipTexture);
 	ListofAliens anAliens;
 	ListofMissile aMissiles;
 	Alien alien;
 	startButtun start;
+	Player player;
+	Ship ship;
+	ship.readfile();
 	
 	alien = anAliens.getRandomAlien();
 	if (!missileTexture.loadFromFile("missile.png"))
@@ -110,20 +106,15 @@ int main()
 	Bomb bomb(bombTexture,alien.getAliensSprite().getPosition());
 	ListofBomb listBomb;
 	start.readfile();
+// initial position of the ship will be approx middle of screen
 	
-
-
-
-
-	// initial position of the ship will be approx middle of screen
-	float shipX = window.getSize().x / 2.0f;
-	float shipY = window.getSize().y*(8 /9.0f);
-	ship.setPosition(shipX, shipY);
-	Missile missile(missileTexture, ship.getPosition(),0);
-	start.setPos(ship.getPosition());
+	ship.setPos(window.getSize().x / 2.0f, window.getSize().y*(8 / 9.0f));
+	Missile missile(missileTexture, ship.getShipsSprite().getPosition(),0);
+	start.setPos(ship.getShipsSprite().getPosition());
 
 	int id = 0;
 	int count = 0;
+	int speedofAlien, speedofBomb;
 	while (window.isOpen())
 	{
 		// check all the window's events that were triggered since the last iteration of the loop
@@ -141,7 +132,7 @@ int main()
 			{
 				if (event.key.code == Keyboard::Space)
 				{
-					Missile temp(missileTexture, ship.getPosition(),id);
+					Missile temp(missileTexture, ship.getShipsSprite().getPosition(),id);
 						missile = temp;
 					aMissiles.addtoMissuleList(missile);
 					id++;
@@ -175,12 +166,7 @@ int main()
 		{
 
 			window.draw(background);
-
-			moveShip(ship);
-			anAliens.move();
-			missile.moveMissile();
-			aMissiles.updateMissuleList(missile);
-			aMissiles.Missileerase();
+			
 			
 			if (count % 80 == 0)
 			{
@@ -190,16 +176,46 @@ int main()
 				listBomb.addtoBombList(temp);
 				
 			}
-			bomb.moveBomb();
-		
+			if (player.getLevel() == 1)
+			{
+				speedofAlien = 0.5;
+				speedofBomb = 10;
+				ship.moveShip();
+				anAliens.move(speedofAlien);
+				missile.moveMissile();
+				aMissiles.updateMissuleList(missile);
+				anAliens.removeAliens(aMissiles);
 
-			// draw the ship on top of background 
-			// (the ship from previous frame was erased when we drew background)
-			window.draw(ship);
-			missile.draw(window);
+				bomb.moveBomb(speedofBomb);
+			}
+			if (anAliens.isNullaliens() == true)
+			{
+				player.setLevel(2);
+				speedofAlien = 1;
+				speedofBomb = 20;
 
-			anAliens.drawList(window);
-			bomb.draw(window);
+			}
+			
+			if (ship.getShipsSprite().getPosition() == anAliens.getAlien().getAliensSprite().getPosition())
+			{
+				player.setLisfe(0);
+
+			}
+			if (bomb.isgetHit(ship))
+			{
+				player.lifedecresing();
+			}
+			if (player.getLIfe() == 0)
+			{
+				
+			}
+			
+				ship.draw(window);
+				missile.draw(window);
+				player.Textdraw(window);
+				anAliens.drawList(window);
+				bomb.draw(window);
+			
 			
 			// end the current frame; this makes everything that we have 
 			// already "drawn" actually show up on the screen

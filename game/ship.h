@@ -29,10 +29,10 @@ public:
 		ship.setTexture(shipTexture);
 
 	}
-	void setPos(Vector2f pos)
+	void setPos(float x, float y)
 	{
-		position = pos;
-		ship.setPosition(position.x, position.y);
+		
+		ship.setPosition(x,y);
 	}
 	Vector2f getShipPosition()
 	{

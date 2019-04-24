@@ -52,7 +52,7 @@ public:
 
 	}
 	// This function move the list of alien 
-	void move()
+	void move(int speed)
 	{
 
 		list<Alien>::iterator iter;

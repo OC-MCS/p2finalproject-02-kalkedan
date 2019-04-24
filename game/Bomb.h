@@ -30,11 +30,11 @@ public:
 
 		window.draw(bomb);
 	}
-	void moveBomb()
+	void moveBomb(int speed)
 	{
 		if (bomb.getPosition().y < 1600)
 		{
-			bomb.move(0, 20);
+			bomb.move(0, speed);
 		}
 	}
 	Sprite getBombSprite()

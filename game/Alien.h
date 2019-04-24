@@ -25,14 +25,14 @@ public:
 	
 	void draw(RenderWindow& window)
 	{
-
+		
 		window.draw(alien);
 	}
 	
-	void moveAlien()
+	void moveAlien(int speed)
 	{
 		if(alien.getPosition().y<1600)
-		alien.move(0, 0.5);
+		alien.move(0, speed);
 	}
 	Sprite getAliensSprite()
 	{

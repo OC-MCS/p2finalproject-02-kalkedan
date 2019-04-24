@@ -6,6 +6,10 @@ class Player
 private:
 	int score = 0;
 	int lifeLost = 3;
+	Font lifeLostdis;
+	Font Scoredis;
+	int level = 1;
+	
 public:
 	void Scoreincreament()
 	{
@@ -24,4 +28,34 @@ public:
 	{
 		lifeLost = life;
 	}
+	int getLevel()
+	{
+		return level;
+	}
+	void setLevel( int l)
+	{
+		level = l;
+	}
+	void Textdraw(RenderWindow &win)
+	{
+		
+		if (!lifeLostdis.loadFromFile("C:\\windows\\Fonts\\arial.ttf"))
+		{
+			//	die ("couldn't load font");
+		}
+		Text title1("Life Lost", lifeLostdis, 50);
+		title1.setPosition(5, 6);
+		win.draw(title1);
+		if (!Scoredis.loadFromFile("C:\\windows\\Fonts\\arial.ttf"))
+		{
+			//	die ("couldn't load font");
+		}
+		
+		Text Scoredis("Score",  Scoredis, 50);
+		Scoredis.setPosition(300, 6);
+		win.draw(Scoredis);
+
+	}
+
+	
 };
