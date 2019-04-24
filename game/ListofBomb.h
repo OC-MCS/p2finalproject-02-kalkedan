@@ -35,19 +35,14 @@ public:
 		bombs.push_back(bomb);
 
 	}
-	
-
-
-
-
 	void move(int speed)
 	{
-		//const float DISTANCE = 5.0;
+		
 		list<Bomb>::iterator iter;
 
 		for (iter = bombs.begin(); iter != bombs.end(); iter++)
 		{
-			(*iter).moveBomb(speed);
+			(*iter).moveBomb();
 
 		}
 	}

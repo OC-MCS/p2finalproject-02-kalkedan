@@ -12,12 +12,9 @@ private:
 	Sprite bomb;
 	
 
-	//bombPosition pos=alien1.getposition();
-public:
-	Bomb()
-	{
 
-	}
+public:
+	
 
 	
 	Bomb(Texture &tex, Vector2f pos)
@@ -33,11 +30,11 @@ public:
 
 		window.draw(bomb);
 	}
-	void moveBomb(int speed)
+	void moveBomb()
 	{
 		if (bomb.getPosition().y < 1600)
 		{
-			bomb.move(0, speed);
+			bomb.move(0, 20);
 		}
 	}
 	Sprite getBombSprite()

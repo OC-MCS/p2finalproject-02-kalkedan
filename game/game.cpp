@@ -12,6 +12,7 @@ using namespace std;
 #include"ListofMissile.h"
 #include "bomb.h"
 #include "ListofBomb.h"
+#include"startButton.h"
 using namespace sf; 
 
 //============================================================
@@ -51,7 +52,7 @@ int main()
 
 	RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "aliens!");
 	// Limit the framerate to 60 frames per second
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(80);
 
 	// load textures from file into memory. This doesn't display anything yet.
 	// Notice we do this *before* going into animation loop.
@@ -74,6 +75,15 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
+	Texture bombTexture;
+	if (!bombTexture.loadFromFile("fire.png"))
+	{
+		cout << "Unable to load missile texture!" << endl;
+		exit(EXIT_FAILURE);
+	}
+
+
+
 	// A sprite is a thing we can draw and manipulate on the screen.
 	// We have to give it a "texture" to specify what it looks like
 
@@ -88,7 +98,20 @@ int main()
 	ship.setTexture(shipTexture);
 	ListofAliens anAliens;
 	ListofMissile aMissiles;
-	Bomb bomb;
+	Alien alien;
+	startButtun start;
+	
+	alien = anAliens.getRandomAlien();
+	if (!missileTexture.loadFromFile("missile.png"))
+	{
+		cout << "Unable to load missile texture!" << endl;
+		exit(EXIT_FAILURE);
+	}
+	Bomb bomb(bombTexture,alien.getAliensSprite().getPosition());
+	ListofBomb listBomb;
+	start.readfile();
+	
+
 
 
 
@@ -97,14 +120,17 @@ int main()
 	float shipY = window.getSize().y*(8 /9.0f);
 	ship.setPosition(shipX, shipY);
 	Missile missile(missileTexture, ship.getPosition(),0);
+	start.setPos(ship.getPosition());
 
 	int id = 0;
+	int count = 0;
 	while (window.isOpen())
 	{
 		// check all the window's events that were triggered since the last iteration of the loop
 		// For now, we just need this so we can click on the window and close it
 		Event event;
 		
+
 		while (window.pollEvent(event))
 		{
 			Event player;
@@ -115,11 +141,20 @@ int main()
 			{
 				if (event.key.code == Keyboard::Space)
 				{
-					Missile temp(missileTexture, ship.getPosition(),1);
+					Missile temp(missileTexture, ship.getPosition(),id);
 						missile = temp;
 					aMissiles.addtoMissuleList(missile);
 					id++;
 				}
+				
+			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if(start.getIsClicked()==true);
+				{
+					start.clear(window);
+				}
+				start.setIsClicked(false);
 				
 			}
 		}
@@ -132,19 +167,44 @@ int main()
 
 		// draw background first, so everything that's drawn later 
 		// will appear on top of background
-		window.draw(background);
+		start.draw(window);
+		
 
-		moveShip(ship); 
-		anAliens.move();
-		missile.moveMissile();
-		aMissiles.updateMissuleList(missile);
-		// draw the ship on top of background 
-		// (the ship from previous frame was erased when we drew background)
-		window.draw(ship);
-		anAliens.drawList(window);
-		missile.draw(window);
-		// end the current frame; this makes everything that we have 
-		// already "drawn" actually show up on the screen
+		
+		if (start.getIsClicked() == false)
+		{
+
+			window.draw(background);
+
+			moveShip(ship);
+			anAliens.move();
+			missile.moveMissile();
+			aMissiles.updateMissuleList(missile);
+			aMissiles.Missileerase();
+			
+			if (count % 80 == 0)
+			{
+				alien = anAliens.getRandomAlien();
+				Bomb temp(bombTexture, alien.getAliensSprite().getPosition());
+				bomb = temp;
+				listBomb.addtoBombList(temp);
+				
+			}
+			bomb.moveBomb();
+		
+
+			// draw the ship on top of background 
+			// (the ship from previous frame was erased when we drew background)
+			window.draw(ship);
+			missile.draw(window);
+
+			anAliens.drawList(window);
+			bomb.draw(window);
+			
+			// end the current frame; this makes everything that we have 
+			// already "drawn" actually show up on the screen
+			count++;
+		}
 		window.display();
 
 		// At this point the frame we have built is now visible on screen.

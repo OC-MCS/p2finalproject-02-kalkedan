@@ -39,12 +39,7 @@ public:
 
 		missiles.push_back(missile);
 	}
-	Missile getMissile()
-	{
-		list<Missile>::iterator iter;
 
-		return (*iter);
-	}
 	void updateMissuleList(Missile missile)
 	{
 		Vector2f orginalPos = missile.getMissileSprite().getPosition();
@@ -83,8 +78,10 @@ public:
 		for (iter = missiles.begin(); iter != missiles.end(); iter++)
 		{
 			(*iter).moveMissile();
+			
 
 		}
+		
 	}
 	list<Missile> *getListOfMissile()
 	{
